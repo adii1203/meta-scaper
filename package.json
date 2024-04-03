@@ -6,9 +6,10 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/index.js",
+    "dev": "nodemon --env-file=.env ./src/index.js",
     "start": "node ./src/index.js",
-    "docker:dev": "docker run -p 3000:3000 -v .:/usr/src/app metascaper:dev"
+    "docker:dev": "docker run -p 3000:3000 -v .:/usr/src/app metascaper:dev",
+    "docker:build": "docker build --target development -t metascaper:dev ."
   },
   "author": "aditya",
   "license": "ISC",
