@@ -1,8 +1,8 @@
 import express from "express";
-import metadataRouter from "./routes/metadata.js";
+import routes from "./routes/route.js";
 const app = express();
 
-app.use("/", metadataRouter);
+app.use("/", routes);
 
 app.get("/", (req, res) => {
   res.send("Hello World! again");
