@@ -18,6 +18,16 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 
 COPY package*.json .
 
+RUN apk add --no-cache \
+  build-base \
+  g++ \
+  cairo-dev \
+  jpeg-dev \
+  pango-dev \
+  giflib-dev
+
+RUN apk update && apk add build-base g++ cairo-dev jpeg-dev pango-dev giflib-dev
+
 RUN npm install
 
 FROM base as development
