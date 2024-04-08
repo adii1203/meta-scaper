@@ -4,13 +4,12 @@ import { asyncHandler } from "../util/asyncHandler.js";
 export const getAvatar = asyncHandler(async (req, res) => {
   const {
     name,
-    width = 100,
-    height = 100,
+    size = 100,
     color = "fff",
     text = "000",
-    bold = false,
+    is_bold = false,
     format = "png",
-    is_upercase = "true",
+    is_uppercase = "true",
   } = req.query;
   if (!name) {
     res.status(400).json({ message: "Name is required" });
@@ -23,16 +22,16 @@ export const getAvatar = asyncHandler(async (req, res) => {
       family: "Poppins-Bold",
     });
     const firstChar =
-      is_upercase === "true" ? name.charAt(0).toUpperCase() : name.charAt(0);
+      is_uppercase === "true" ? name.charAt(0).toUpperCase() : name.charAt(0);
 
-    const canvas = createCanvas(Number(width), Number(height));
+    const canvas = createCanvas(Number(size), Number(size));
     const ctx = canvas.getContext("2d");
 
     ctx.fillStyle = `#${color}`;
-    ctx.fillRect(0, 0, Number(width), Number(height));
+    ctx.fillRect(0, 0, Number(size), Number(size));
     ctx.fillStyle = `#${text}`;
     ctx.font =
-      bold == "true" ? "30px 'Poppins-Bold'" : "30px 'Poppins-Regular'";
+      is_bold == "true" ? "30px 'Poppins-Bold'" : "30px 'Poppins-Regular'";
     const textSize = ctx.measureText(firstChar);
     ctx.fillText(
       firstChar,
