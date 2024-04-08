@@ -1,7 +1,6 @@
 import puppeteer from "puppeteer";
 
 export const getMetaData = async (url) => {
-  console.log("launching browser");
   const browser = await puppeteer.launch({
     headless: true,
     executablePath: "/usr/bin/chromium-browser",
@@ -10,12 +9,9 @@ export const getMetaData = async (url) => {
 
   try {
     const page = await browser.newPage();
-    console.log("navigateing to url");
     await page.goto(url, {
       waitUntil: "load",
     });
-
-    console.log("getting metadata");
 
     const title = await page.title();
 
